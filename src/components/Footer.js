@@ -7,7 +7,7 @@ export default function Footer() {
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 5%' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 40, paddingBottom: 48, borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
           <div>
-            <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 700, color: C.teal, letterSpacing: 3, marginBottom: 12 }}>TAERAS</div>
+            <img src="/taeraslogo.svg" alt="Taeras" style={{ height: 40, marginBottom: 12, filter: 'brightness(0) invert(1)' }} />
             <p style={{ color: 'rgba(255,255,255,0.35)', fontSize: 13, lineHeight: 1.7, maxWidth: 220 }}>The world's first travel-equity platform. Every trip becomes ownership.</p>
             <div style={{ display: 'flex', gap: 12, marginTop: 20 }}>
               {['Ln'].map(s => (
@@ -52,8 +52,8 @@ export default function Footer() {
 
         {/* Disclaimer */}
         <div style={{ padding: '28px 0', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-          <p style={{ color: 'rgb(255, 255, 255)', fontSize: 11, lineHeight: 1.85, maxWidth: 1100 }}>
-            <strong style={{ color: 'rgba(255, 255, 255, 0.97)' }}>Disclaimer:</strong> Taeras is a financial technology company, not a bank. Banking services and card issuance are provided by our licensed partner institutions. Investment accounts and fractional share trading are facilitated through SEC-registered and SIPC-member broker-dealers. Taeras is currently in a Private Beta phase; access is granted sequentially based on our waitlist. Past investment performance does not guarantee future results. Fractional share ownership involves risk, including possible loss of principal. Please read our full Terms of Service and Risk Disclosure before joining.
+          <p style={{ color: 'rgba(255, 255, 255, 0.51)', fontSize: 11, lineHeight: 1.85, maxWidth: 1100 }}>
+            <strong style={{ color: 'rgba(255, 255, 255, 0.58)' }}>Disclaimer:</strong> Taeras is a financial technology company, not a bank. Banking services and card issuance are provided by our licensed partner institutions. Investment accounts and fractional share trading are facilitated through SEC-registered and SIPC-member broker-dealers. Taeras is currently in a Private Beta phase; access is granted sequentially based on our waitlist. Past investment performance does not guarantee future results. Fractional share ownership involves risk, including possible loss of principal. Please read our full Terms of Service and Risk Disclosure before joining.
           </p>
         </div>
 

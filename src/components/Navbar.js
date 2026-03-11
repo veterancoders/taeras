@@ -48,7 +48,6 @@ export default function Navbar() {
     ? 'rgba(255,255,255,0.97)'
     : isHeroPage ? 'transparent' : 'rgba(255,255,255,0.97)';
   const navBorder = scrolled || !isHeroPage ? '1px solid #e9ecef' : 'none';
-  const logoColor = (!scrolled && isHeroPage) ? '#00d4d4' : '#00b4b4';
   const linkColor = (!scrolled && isHeroPage) ? 'rgba(255,255,255,0.75)' : '#4a5568';
 
   return (
@@ -121,7 +120,14 @@ export default function Navbar() {
         transition: 'all 0.4s cubic-bezier(0.4,0,0.2,1)',
         boxShadow: (scrolled || !isHeroPage) ? '0 2px 20px rgba(0,0,0,0.06)' : 'none',
       }}>
-        <Link to="/" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 26, fontWeight: 700, color: logoColor, letterSpacing: 3, textDecoration: 'none', flexShrink: 0, transition: 'color 0.3s' }}>TAERAS</Link>
+        <Link to="/" style={{ textDecoration: 'none', flexShrink: 0 }} aria-label="Taeras home">
+          <img src="/taeraslogo.svg" alt="Taeras" style={{
+            height: 36,
+            transition: 'height 0.3s, filter 0.3s',
+            display: 'block',
+            filter: (!scrolled && isHeroPage) ? 'brightness(0) invert(1)' : 'none'
+          }} />
+        </Link>
 
         <div className="desktop-nav-wrap" style={{ gap: 28, alignItems: 'center' }}>
           {NAV_LINKS.map(link => (

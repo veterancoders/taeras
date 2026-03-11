@@ -164,6 +164,7 @@ export function PageHero({ label, title, subtitle, children, light = true }) {
       paddingTop: 140, paddingBottom: 80,
       padding: '140px 5% 80px',
       overflow: 'hidden',
+      marginBottom: 60,
       background: light ? 'linear-gradient(160deg, #f0fafa 0%, #e6f7f7 40%, #f8f9fa 100%)' : '#060d1a',
     }}>
       <div style={{
