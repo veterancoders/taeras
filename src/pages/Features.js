@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { C, SectionLabel, LightCard, Reveal, tealGrad, PageHero, YieldCalculator, WaitlistModal } from '../components/UI';
 import TaerasCard from '../components/TaerasCard';
 

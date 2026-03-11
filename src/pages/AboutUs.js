@@ -1,13 +1,6 @@
 import { useState } from 'react';
 import { C, SectionLabel, LightCard, Reveal, tealGrad, PageHero, WaitlistModal } from '../components/UI';
 
-const TEAM = [
-  {name:'Adewale Okafor',role:'Co-Founder & CEO',bio:'Former VP at GTBank. 12 years in African fintech. Flew 200+ flights before realizing none of them built him wealth.',emoji:'👨🏾‍💼',country:'🇳🇬'},
-  {name:'Elif Yıldız',role:'Co-Founder & CTO',bio:'Ex-Stripe, ex-Revolut. Built payments infrastructure across 40 countries. Obsessed with eliminating FX friction.',emoji:'👩🏻‍💻',country:'🇹🇷'},
-  {name:'Chioma Eze',role:'Head of Product',bio:'Former product lead at Flutterwave. Designed fintech products used by 5M+ Africans. Believes ownership is a right.',emoji:'👩🏾‍🎨',country:'🇳🇬'},
-  {name:'Marcus Webb',role:'Head of Investments',bio:'Previously at Fidelity and Vanguard. Expert in fractional equity systems and global brokerage infrastructure.',emoji:'👨🏼‍📊',country:'🇬🇧'},
-];
-
 export default function AboutUs() {
   const [showModal, setShowModal] = useState(false);
   return (

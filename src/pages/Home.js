@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import {
   C, SectionLabel, LightCard, Counter, Reveal,
-  tealGrad, goldGrad, YieldCalculator, FaqAccordion, WaitlistModal
+  tealGrad, YieldCalculator, FaqAccordion, WaitlistModal
 } from '../components/UI';
 import TaerasCard from '../components/TaerasCard';
 
@@ -40,16 +40,13 @@ const CARD_DATA = [
 ];
 
 function HeroCards() {
-  const [line1, setLine1] = useState(false);
-  const [line2, setLine2] = useState(false);
+  
   const [hovered, setHovered] = useState(null);
   const ref = useRef(null);
 
   useEffect(() => {
     const obs = new IntersectionObserver(([e]) => {
       if (e.isIntersecting) {
-        setTimeout(() => setLine1(true), 500);
-        setTimeout(() => setLine2(true), 1000);
         obs.disconnect();
       }
     }, { threshold: 0.25 });

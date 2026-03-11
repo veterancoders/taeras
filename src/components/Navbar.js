@@ -50,7 +50,6 @@ export default function Navbar() {
   const navBorder = scrolled || !isHeroPage ? '1px solid #e9ecef' : 'none';
   const logoColor = (!scrolled && isHeroPage) ? '#00d4d4' : '#00b4b4';
   const linkColor = (!scrolled && isHeroPage) ? 'rgba(255,255,255,0.75)' : '#4a5568';
-  const linkHover = '#00b4b4';
 
   return (
     <>
