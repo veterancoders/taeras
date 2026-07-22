@@ -312,14 +312,25 @@ export function WaitlistModal({ onClose }) {
     return () => window.removeEventListener('keydown', fn);
   }, [onClose]);
 
-  // Save to localStorage
-  const handleSubmit = () => {
+  // Submit to PHP backend (public/api/waitlist.php)
+  const handleSubmit = async () => {
     if (!email || !/\S+@\S+\.\S+/.test(email)) { setErr('Please enter a valid email address'); return; }
-    const entry = { name, email, country, joinedAt: new Date().toISOString() };
-    const existing = JSON.parse(localStorage.getItem('taeras_waitlist') || '[]');
-    if (existing.some(e => e.email === email)) { setErr('This email is already on the waitlist!'); return; }
-    localStorage.setItem('taeras_waitlist', JSON.stringify([...existing, entry]));
-    setDone(true);
+    setErr('');
+    try {
+      const res = await fetch('api/waitlist.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, country })
+      });
+      const json = await res.json();
+      if (!res.ok) {
+        setErr(json.error || 'Server error');
+        return;
+      }
+      setDone(true);
+    } catch (err) {
+      setErr('Network error — please try again');
+    }
   };
 
   return (

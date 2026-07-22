@@ -16,14 +16,25 @@ export default function ContactUs() {
     return e;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const e = validate();
     if (Object.keys(e).length) { setErrors(e); return; }
-    // Save to localStorage
-    const entry = { ...form, joinedAt: new Date().toISOString() };
-    const existing = JSON.parse(localStorage.getItem('taeras_contacts') || '[]');
-    localStorage.setItem('taeras_contacts', JSON.stringify([...existing, entry]));
-    setSubmitted(true);
+    try {
+      const res = await fetch('api/contact.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      const json = await res.json();
+      if (!res.ok) {
+        // server returned an error
+        setErrors({ form: json.error || 'Server error' });
+        return;
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setErrors({ form: 'Network error — please try again' });
+    }
   };
 
   const inp = (field) => ({
@@ -38,7 +49,7 @@ export default function ContactUs() {
     <div style={{ background:'#fff', minHeight:'80vh', display:'flex', alignItems:'center', justifyContent:'center', padding:'100px 5%', textAlign:'center' }}>
       <div>
         <div style={{ fontSize:60, marginBottom:20 }}>🎉</div>
-        <h2 style={{ fontFamily:"'Cormorant Garamond', serif", fontSize:'clamp(26px,4vw,50px)', fontWeight:700, color:C.textDark, marginBottom:14 }}>You're on the list.<br /><span style={tealGrad}>We'll be in touch.</span></h2>
+        <h2 style={{ fontFamily:"'Cormorant Garamond', serif", fontSize:'clamp(26px,4vw,50px)', fontWeight:700, color:C.textDark, marginBottom:14 }}>Thank you for contacting us.<br /><span style={tealGrad}>We'll be in touch.</span></h2>
         <p style={{ color:C.textMid, fontSize:16, maxWidth:440, margin:'0 auto 28px', lineHeight:1.7 }}>Thanks for reaching out, {form.name.split(' ')[0]}. We review every submission personally and will get back to you within 24–48 hours.</p>
         <div style={{ display:'inline-block', background:'#f0fafa', color:C.teal, padding:'10px 24px', borderRadius:20, fontSize:13, border:'1px solid rgba(0,180,180,0.2)' }}>
           Private Beta
