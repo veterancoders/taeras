@@ -7,13 +7,20 @@ $DB_NAME = 'taeras';
 
 header('Content-Type: application/json');
 
-$mysqli = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
-if ($mysqli->connect_errno) {
+// mysqli throws mysqli_sql_exception on error by default (PHP 8.1+).
+// Every endpoint that uses $mysqli must catch mysqli_sql_exception around
+// prepare()/execute() calls, otherwise an uncaught exception becomes an
+// unhandled 500 with no JSON body.
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+try {
+    $mysqli = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
+    $mysqli->set_charset('utf8mb4');
+} catch (mysqli_sql_exception $e) {
     http_response_code(500);
     echo json_encode(['error' => 'Database connection failed']);
     exit;
 }
-$mysqli->set_charset('utf8mb4');
 
 //sql tables:
 /*
@@ -33,6 +40,15 @@ CREATE TABLE contact_us (
   country VARCHAR(128),
   message TEXT,
   joined_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE survey_responses (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(255),
+  full_name VARCHAR(255),
+  founders_circle VARCHAR(64),
+  responses JSON NOT NULL,
+  submitted_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 */
 

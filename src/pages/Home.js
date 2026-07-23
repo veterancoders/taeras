@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import {
   C, SectionLabel, LightCard, Counter, Reveal,
   tealGrad, YieldCalculator, FaqAccordion, WaitlistModal
@@ -788,6 +789,39 @@ export default function Home() {
             </h2>
           </Reveal>
           <Reveal delay={0.1}><FaqAccordion dark={false} /></Reveal>
+        </div>
+      </section>
+
+      {/* ── SURVEY PROMO ── #f8f9fa ── */}
+      <section style={{ background: '#f8f9fa', padding: '100px 5%' }}>
+        <div style={{ maxWidth: 860, margin: '0 auto' }}>
+          <Reveal>
+            <LightCard style={{ padding: 'clamp(32px,6vw,56px)', textAlign: 'center' }}>
+              <SectionLabel>Market Research Survey</SectionLabel>
+              <h2 style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: 'clamp(26px,4vw,44px)', fontWeight: 700,
+                lineHeight: 1.15, marginTop: 10, marginBottom: 16, color: C.textDark,
+              }}>
+               Help us shape the future of <br /><span style={tealGrad}>travel finance.</span>
+              </h2>
+              <p style={{ color: C.textMid, fontSize: 15, lineHeight: 1.75, maxWidth: 520, margin: '0 auto 30px' }}>
+Your feedback will help us understand travelers’ experiences, preferences, and interest in new ways to make travel spending more rewarding. The survey takes approximately 3–5 minutes to complete.              </p>
+              <Link to="/survey" style={{
+                display: 'inline-block', textDecoration: 'none',
+                background: 'linear-gradient(135deg,#00b4b4,#008a8a)',
+                color: '#fff', padding: '15px 38px', borderRadius: 50,
+                fontSize: 15, fontWeight: 700, fontFamily: "'DM Sans'",
+                letterSpacing: 0.4, boxShadow: '0 8px 32px rgba(0,180,180,0.3)',
+                transition: 'transform 0.2s, box-shadow 0.2s',
+              }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 14px 40px rgba(0,180,180,0.45)'; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(0,180,180,0.3)'; }}
+              >
+                Take the Survey →
+              </Link>
+            </LightCard>
+          </Reveal>
         </div>
       </section>
 

@@ -8,26 +8,21 @@ if (!$input || !isset($input['email']) || !filter_var($input['email'], FILTER_VA
     exit;
 }
 
-$name = $mysqli->real_escape_string($input['name'] ?? '');
-$email = $mysqli->real_escape_string($input['email']);
-$type = $mysqli->real_escape_string($input['type'] ?? 'General Inquiry');
-$country = $mysqli->real_escape_string($input['country'] ?? '');
-$message = $mysqli->real_escape_string($input['message'] ?? '');
+$name = $input['name'] ?? '';
+$email = $input['email'];
+$type = $input['type'] ?? 'General Inquiry';
+$country = $input['country'] ?? '';
+$message = $input['message'] ?? '';
 $joined_at = date('Y-m-d H:i:s');
 
-$stmt = $mysqli->prepare("INSERT INTO contact_us (name, email, type, country, message, joined_at) VALUES (?, ?, ?, ?, ?, ?)");
-if (!$stmt) {
+try {
+    $stmt = $mysqli->prepare("INSERT INTO contact_us (name, email, type, country, message, joined_at) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param('ssssss', $name, $email, $type, $country, $message, $joined_at);
+    $stmt->execute();
+    echo json_encode(['ok' => true]);
+} catch (mysqli_sql_exception $e) {
     http_response_code(500);
-    echo json_encode(['error' => 'Prepare failed']);
-    exit;
+    echo json_encode(['error' => 'Could not save your submission']);
 }
-$stmt->bind_param('ssssss', $name, $email, $type, $country, $message, $joined_at);
-if (!$stmt->execute()) {
-    http_response_code(500);
-    echo json_encode(['error' => 'Insert failed']);
-    exit;
-}
-
-echo json_encode(['ok' => true]);
 
 ?>

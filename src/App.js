@@ -7,6 +7,7 @@ import HowItWorks from './pages/HowItWorks';
 import Features from './pages/Features';
 import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
+import Survey from './pages/Survey';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/features" element={<Features />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="/survey" element={<Survey />} />
         </Routes>
       </Layout>
     </BrowserRouter>

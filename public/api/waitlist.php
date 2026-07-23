@@ -8,24 +8,24 @@ if (!$input || !isset($input['email']) || !filter_var($input['email'], FILTER_VA
     exit;
 }
 
-$name = $mysqli->real_escape_string($input['name'] ?? '');
-$email = $mysqli->real_escape_string($input['email']);
-$country = $mysqli->real_escape_string($input['country'] ?? '');
+$name = $input['name'] ?? '';
+$email = $input['email'];
+$country = $input['country'] ?? '';
 $joined_at = date('Y-m-d H:i:s');
 
-$stmt = $mysqli->prepare("INSERT INTO waitlist (name, email, country, joined_at) VALUES (?, ?, ?, ?)");
-if (!$stmt) {
-    http_response_code(500);
-    echo json_encode(['error' => 'Prepare failed']);
-    exit;
+try {
+    $stmt = $mysqli->prepare("INSERT INTO waitlist (name, email, country, joined_at) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param('ssss', $name, $email, $country, $joined_at);
+    $stmt->execute();
+    echo json_encode(['ok' => true]);
+} catch (mysqli_sql_exception $e) {
+    if ($mysqli->errno === 1062) {
+        http_response_code(409);
+        echo json_encode(['error' => 'This email is already on the waitlist']);
+    } else {
+        http_response_code(500);
+        echo json_encode(['error' => 'Could not save your submission']);
+    }
 }
-$stmt->bind_param('ssss', $name, $email, $country, $joined_at);
-if (!$stmt->execute()) {
-    http_response_code(500);
-    echo json_encode(['error' => 'Insert failed or duplicate email']);
-    exit;
-}
-
-echo json_encode(['ok' => true]);
 
 ?>

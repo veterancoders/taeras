@@ -31,7 +31,7 @@ export default function Footer() {
           </div>
           <div>
             <div style={{ color: C.teal, fontSize: 11, letterSpacing: 3, marginBottom: 16, fontWeight: 600 }}>COMPANY</div>
-            {[{label:'About Us',path:'/about'},{label:'Contact',path:'/contact'},/* {label:'Careers',path:'/contact'},{label:'Press',path:'/contact'} */].map(l => (
+            {[{label:'About Us',path:'/about'},{label:'Contact',path:'/contact'},{label:'Survey',path:'/survey'},/* {label:'Careers',path:'/contact'},{label:'Press',path:'/contact'} */].map(l => (
               <div key={l.label} style={{ marginBottom: 10 }}>
                 <Link to={l.path} style={{ color: 'rgba(255,255,255,0.4)', fontSize: 13, transition: 'color 0.2s' }}
                   onMouseEnter={e => e.target.style.color = C.teal}
@@ -40,14 +40,14 @@ export default function Footer() {
               </div>
             ))}
           </div>
-          <div>
+          {/* <div>
             <div style={{ color: C.teal, fontSize: 11, letterSpacing: 3, marginBottom: 16, fontWeight: 600 }}>JOIN THE MOVEMENT</div>
             <p style={{ color: 'rgba(255,255,255,0.35)', fontSize: 13, marginBottom: 14, lineHeight: 1.6 }}>Get early access updates and travel-equity insights.</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               <input type="email" placeholder="your@email.com" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(0,180,180,0.2)', color: '#fff', padding: '11px 14px', borderRadius: 10, fontSize: 13, fontFamily: "'DM Sans'", outline: 'none', width: '100%' }} />
               <button style={{ background: 'linear-gradient(135deg,#00b4b4,#008a8a)', color: '#fff', border: 'none', padding: '11px', borderRadius: 10, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: "'DM Sans'" }}>Subscribe</button>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Disclaimer */}

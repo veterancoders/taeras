@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php -v)",
+      "Bash(php -m)",
+      "Bash(mysql --version)",
+      "Bash(curl -s -X POST http://localhost:3001/api/waitlist.php -H 'Content-Type: application/json' -d '{\"name\":\"Dup\",\"email\":\"dup-test-__TRACKED_VAR__@example.com\",\"country\":\"Nigeria\"}' -w '\\\\nHTTP_STATUS:%{http_code}\\\\n')",
+      "Bash(curl -s -X POST http://localhost:3001/api/contact.php -H \"Content-Type: application/json\" -d '{\"name\":\"Test\",\"email\":\"test@example.com\",\"type\":\"General Inquiry\",\"country\":\"Nigeria\",\"message\":\"hello\"}' -w \"\\\\nHTTP_STATUS:%{http_code}\\\\n\")",
+      "Read(//tmp/**)",
+      "Bash(curl -s -X POST http://localhost:3001/api/waitlist.php -H 'Content-Type: application/json' -d '{\"name\":\"Dup\",\"email\":\"dup-test-verify-__TRACKED_VAR__@example.com\",\"country\":\"Nigeria\"}' -w '\\\\nHTTP_STATUS:%{http_code}\\\\n')",
+      "Bash(curl -s -X POST http://localhost:3001/api/survey.php -H \"Content-Type: application/json\" -d '{\"email\":\"survey-test@example.com\",\"fullName\":\"Survey Tester\",\"foundersCircle\":\"Yes - sign me up immediately\",\"responses\":{\"education\":\"Bachelor'\"'\"'s Degree\",\"age\":\"26-35\"}}' -w \"\\\\nHTTP_STATUS:%{http_code}\\\\n\")",
+      "Bash(sleep 12; tail -50 /tmp/cra.log)",
+      "Bash(cat)",
+      "Bash(php /tmp/verify.php)",
+      "Bash(php /tmp/cleanup.php)",
+      "Bash(ls \"C:/xampp/htdocs\" 2>&1 | head -50)",
+      "Read(//c/xampp/htdocs/**)",
+      "Bash(grep -n \"^Listen\" \"C:/xampp/apache/conf/httpd.conf\" 2>&1)",
+      "Read(//c/xampp/apache/conf/**)"
+    ]
+  }
+}

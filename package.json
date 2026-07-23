@@ -2,7 +2,7 @@
   "name": "taeras",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001",
+  "proxy": "http://localhost",
   "dependencies": {
     "gsap": "^3.14.2",
     "react": "^19.2.4",
